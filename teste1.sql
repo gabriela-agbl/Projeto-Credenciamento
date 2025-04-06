@@ -9,7 +9,7 @@ CREATE TABLE EVENTO (
 
 CREATE TABLE USUARIO (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100)
+    nome VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     senha VARCHAR(100),
     tipo_usuario ENUM('organizador', 'participante') NOT NULL
