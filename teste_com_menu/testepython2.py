@@ -99,7 +99,7 @@ def criar_banco():
     )
     cursor = con.cursor()
 
-    with open("teste2.sql", "r") as arquivo:
+    with open("teste_com_menu/teste2.sql", "r") as arquivo:
         comandos = arquivo.read().split(';')
         for comando in comandos:
             if comando.strip() != "":
