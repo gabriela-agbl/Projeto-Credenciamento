@@ -1,23 +1,4 @@
-import mysql.connector
 import User_CRUD
-
-def criar_banco():
-    con = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Projetocdc2025!",
-        database="teste2"
-    )
-    cursor = con.cursor()
-
-    with open("teste_com_menu/teste2.sql", "r") as arquivo:
-        comandos = arquivo.read().split(';')
-        for comando in comandos:
-            if comando.strip() != "":
-                cursor.execute(comando)
-    con.commit()
-    cursor.close()
-    con.close()
 
 def menu():
     while True:
@@ -49,5 +30,4 @@ def menu():
         else:
             print("Opção inválida.")
 
-criar_banco()
 menu()
