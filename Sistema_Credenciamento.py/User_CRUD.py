@@ -27,21 +27,33 @@ def atualizar_porId():
     cursor = con.cursor()
 
     id_usuario = int(input("\nDigite o ID do usuário que deseja atualizar: "))
-    novo_nome = input("\nDigite o novo nome: ") 
-    novo_email = input("\nDigite o novo email: ")
-    nova_senha = input("\nDigite a nova senha: ")
-    novo_tipo = input("\nDigite o novo tipo do usuário(Organizador ou Participante): ")
 
-    sql = "UPDATE USUARIO SET nome = %s, email = %s, senha = %s, tipo_usuario = %s WHERE id_usuario = %s"
-    valores = (novo_nome, novo_email, nova_senha, novo_tipo, id_usuario)
+    select = "SELECT * FROM USUARIO WHERE id_usuario = %s"
+    
+    cursor.execute(select, (id_usuario,))
+    resultado = cursor.fetchone()
 
-    cursor.execute(sql, valores)
-    con.commit()
+    if resultado is None:
+        
+        print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
 
-    print("\nUsuário Atualizado com Sucesso!")
+    else:
 
-    cursor.close()
-    con.close()
+        novo_nome = input("\nDigite o novo nome: ") 
+        novo_email = input("\nDigite o novo email: ")
+        nova_senha = input("\nDigite a nova senha: ")
+        novo_tipo = input("\nDigite o novo tipo do usuário(Organizador ou Participante): ")
+
+        sql = "UPDATE USUARIO SET nome = %s, email = %s, senha = %s, tipo_usuario = %s WHERE id_usuario = %s"
+        valores = (novo_nome, novo_email, nova_senha, novo_tipo, id_usuario)
+
+        cursor.execute(sql, valores)
+        con.commit()
+
+        print("\nUsuário Atualizado com Sucesso!")
+
+        cursor.close()
+        con.close()
 
 def deletar_porId():
 
@@ -50,13 +62,24 @@ def deletar_porId():
 
     id_usuario = int(input("\nDigite o ID do usuário que deseja deletar: "))
 
-    sql = "DELETE FROM USUARIO WHERE id_usuario = %s"
-    valores = (id_usuario,)
+    select = "SELECT * FROM USUARIO WHERE id_usuario = %s"
 
-    cursor.execute(sql, valores)
-    con.commit()
+    cursor.execute(select, (id_usuario,))
+    resultado = cursor.fetchone()
 
-    print("\nUsuário Deletado com Sucesso!")
+    if resultado is None:
+
+        print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
+
+    else:
+
+        sql = "DELETE FROM USUARIO WHERE id_usuario = %s"
+        valores = (id_usuario,)
+
+        cursor.execute(sql, valores)
+        con.commit()
+
+        print("\nUsuário Deletado com Sucesso!")
 
 def listar():
 
