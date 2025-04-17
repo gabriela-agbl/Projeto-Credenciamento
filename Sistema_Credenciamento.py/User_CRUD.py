@@ -7,6 +7,17 @@ def cadastrar():
 
     nome = input("\nDigite o nome do usuário: ")
     email = input("\nDigite o EMAIL do usuário: ")
+
+    cursor.execute("SELECT * FROM USUARIO WHERE email = %s", (email,))
+
+    if cursor.fetchone():
+        print("\nJá existe um usuário com esse E-mail. Tente outro!")
+        
+        cursor.close()
+        con.close()
+        
+        return
+
     senha = input("\nDigite a senha do usuário: ")
     tipo_usuario = input("\nDigite o tipo de usuário(Organizador ou Participante): ")
 
