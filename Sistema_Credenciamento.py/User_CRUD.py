@@ -1,22 +1,41 @@
 import conectar_banco
+import re
+
+def validar_nome(nome):
+    return nome.isalpha()
+
+def validar_email(email):
+    return re.match(r"[^@]+@[^@]+\.[^@]+",email)
 
 def cadastrar():
     
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
-    nome = input("\nDigite o nome do usuário: ")
-    email = input("\nDigite o EMAIL do usuário: ")
+    while True:
+        nome = input("\nDigite o nome do usuário: ")
+    
+        if not validar_nome(nome):
+            print("Nome inválido!Use apenas letras(sem números ou símbolos).")
 
-    cursor.execute("SELECT * FROM USUARIO WHERE email = %s", (email,))
+        else:
+            break
 
-    if cursor.fetchone():
-        print("\nJá existe um usuário com esse E-mail. Tente outro!")
+    while True:
+        email = input("\nDigite o EMAIL do usuário: ")
+
+        if not validar_email(email):
+            print("Formato de email inválido. Ex: nome@exemplo.com")
+
+            continue
+
+        cursor.execute("SELECT * FROM USUARIO WHERE email = %s", (email,))
+
+        if cursor.fetchone():
+            print("\nJá existe um usuário com esse E-mail. Tente outro!")
         
-        cursor.close()
-        con.close()
-        
-        return
+        else:
+            break
 
     senha = input("\nDigite a senha do usuário: ")
     tipo_usuario = input("\nDigite o tipo de usuário(Organizador ou Participante): ")
@@ -50,8 +69,34 @@ def atualizar_porId():
 
     else:
 
-        novo_nome = input("\nDigite o novo nome: ") 
-        novo_email = input("\nDigite o novo email: ")
+        while True:
+            novo_nome = input("\nDigite o novo nome: ") 
+        
+            if not validar_nome(novo_nome):
+                print("Nome inválido!Use apenas letras(sem números ou símbolos).")
+
+            else:
+                break
+
+        while True:
+            novo_email = input("\nDigite o novo email: ")
+        
+            if not validar_email(novo_email):
+                print("Formato de email inválido. Ex: nome@exemplo.com")
+
+                continue
+
+            if novo_email == resultado[2]:
+                break
+
+            cursor.execute("SELECT * FROM USUARIO WHERE email = %s", (novo_email,))
+
+            if cursor.fetchone():
+                print("\nJá existe um usuário com esse E-mail. Tente outro!")
+        
+            else:
+                break
+        
         nova_senha = input("\nDigite a nova senha: ")
         novo_tipo = input("\nDigite o novo tipo do usuário(Organizador ou Participante): ")
 
