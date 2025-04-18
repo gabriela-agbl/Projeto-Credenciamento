@@ -26,5 +26,14 @@ CREATE TABLE IF NOT EXISTS CREDENCIAL (
     FOREIGN KEY (id_evento) REFERENCES EVENTO(id_evento)
 );
 
+CREATE TABLE INSCRICAO (
+    id_inscricao INT AUTO_INCREMENT PRIMARY KEY,
+    id_evento INT,
+    id_usuario INT,
+    FOREIGN KEY (id_evento) REFERENCES EVENTO(id_evento),
+    FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario)
+);
+
+
 ALTER TABLE USUARIO
 ADD CONSTRAINT unique_email UNIQUE(email);
