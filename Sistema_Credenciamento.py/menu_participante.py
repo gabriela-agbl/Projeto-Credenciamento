@@ -17,8 +17,8 @@ def menu_participante(id_usuario):
             inscrever_em_evento(id_usuario)
 
         elif opcao == "3":
-            from menu import menu
-            menu()
+            print("Voltando ao menu principal...")
+            return
 
         else:
             print("Opção inválida.")

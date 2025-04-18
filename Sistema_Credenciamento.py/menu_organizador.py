@@ -22,8 +22,8 @@ def menu_organizador(id_usuario):
             apagar_evento(id_usuario)
 
         elif opcao == "4":
-            from menu import menu
-            menu()
+            print("Voltando ao menu principal...")
+            return
 
         else:
             print("Opção inválida.")
