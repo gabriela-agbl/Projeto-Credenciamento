@@ -1,51 +1,76 @@
-# 💠 Projeto | Sistema de Credenciamento 💠 <img src="https://acdn-us.mitiendanube.com/stores/152/670/products/unifecaf-d2e6b8324931e9ffa117331484999210-480-0.png" alt="Logo da UniFECAF" width="260"/>
+<div align="center">
+  
+  <h1>💠 Projeto | Sistema de Credenciamento 💠</h1> <img src="https://acdn-us.mitiendanube.com/stores/152/670/products/unifecaf-d2e6b8324931e9ffa117331484999210-480-0.png"     alt="Logo da UniFECAF" width="260"/>
+  
+</div>
 
-## 🎯 Objetivo
-O **Sistema de Credenciamento** foi o tema desenvolvido por nossa equipe para o **Projeto Expo Tech** da Faculdade **UniFECAF**.
+<div align="center">
+  <h2>🎯 Objetivo</h2>
+  O <b>Sistema de Credenciamento</b> foi o tema desenvolvido por nossa equipe para o <b>Projeto Expo Tech</b> da Faculdade <b>UniFECAF</b>.
 
-O objetivo é demonstrar, de forma prática, os conhecimentos adquiridos ao longo do semestre, aplicando conceitos aprendidos em sala de aula para resolver uma demanda real do mercado.
+  O objetivo é demonstrar, de forma prática, os conhecimentos adquiridos ao longo do semestre, aplicando conceitos aprendidos em sala de aula para resolver uma demanda real do   mercado.
 
-Este projeto será apresentado no dia **24/05**, durante a **Feira de Tecnologia** promovida pela instituição, com a presença de empresas convidadas que irão avaliar as soluções desenvolvidas pelos estudantes.
+  Este projeto será apresentado no dia <b>24/05</b>, durante a <b>Feira de Tecnologia</b> promovida pela instituição, com a presença de empresas convidadas que irão avaliar as   soluções desenvolvidas pelos estudantes.
 
-A iniciativa é voltada aos alunos do **1º semestre** dos cursos da área de tecnologia.
+  A iniciativa é voltada aos alunos do <b>1º semestre</b> dos cursos da área de tecnologia.
+</div>
 
-## Andamento 🟡
-Ainda em desenvolvimento...
+<div align="center">
+  <h2>Andamento 🟡</h2>
+  Ainda em desenvolvimento...
+</div>
 
 ---
 
-## Funcionalidades e aplicações do Sistema
-- Cadastrar usuários  
-- Cadastrar eventos  
-- Gerenciar usuários  
-- Gerenciar eventos  
-- Login de usuário  
-- Definir permissões de acesso  
-- Criar credenciais  
-- Registrar logs de acesso  
-- Emitir relatórios  
-- Inscrever usuários em eventos  
-- Validar dados  
-- Conectar sistema (Python) ao banco de dados 
+<div align="center">
+  <h2>Funcionalidades e aplicações do Sistema</h2>
+  <div align="left">
+    Cadastrar usuários ✅<br>  
+    Cadastrar eventos ✅<br>  
+    Gerenciar usuários ✅<br>  
+    Gerenciar eventos ✅<br>  
+    Login de usuário ✅<br>  
+    Definir permissões de acesso ✅<br>  
+    Criar credenciais<br>  
+    Registrar logs de acesso<br>  
+    Emitir relatórios<br>  
+    Inscrever usuários em eventos ✅<br>  
+    Validar dados ✅<br>  
+    Conectar sistema (Python) ao banco de dados ✅<br>
+  </div>
+</div>
 
-## Tecnologias utilizadas
--  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" width="40"/>
--  <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL" width="60"/>
--  <img src="https://avatars.githubusercontent.com/u/66977729?s=200&v=4" alt="BRModelo" width="40"/>
--  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg" alt="Trello" width="70"/>
--  <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="40"/>
--  <img src="https://cdn.worldvectorlogo.com/logos/miro-2.svg" alt="Miro" width="40"/>
+<div align="center"> 
+  <h2>Tecnologias utilizadas</h2>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" width="40"/>
+  &emsp;&emsp;
+  <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL" width="60"/>
+  &emsp;&emsp;
+  <img src="https://avatars.githubusercontent.com/u/66977729?s=200&v=4" alt="BRModelo" width="40"/>
+  &emsp;&emsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg" alt="Trello" width="70"/>
+  &emsp;&emsp;
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="40"/>
+  &emsp;&emsp;
+  <img src="https://cdn.worldvectorlogo.com/logos/miro-2.svg" alt="Miro" width="40"/>
+</div>
 
-# Vídeo expositivo do Projeto em execução-Versão 1
+<div align="center">
+  <h1>Vídeo expositivo do Projeto em execução-Versão 1</h1>
+  
   https://github.com/user-attachments/assets/cba3595b-a150-465c-a1d3-f4ce9a31143f
 
-# Vídeo expositivo do Projeto em execução-Versão 2
+  <h1>Vídeo expositivo do Projeto em execução-Versão 2</h1>
+  
   https://github.com/user-attachments/assets/24693116-f742-4e90-af63-63d87ecffa61
 
   https://github.com/user-attachments/assets/c4d75d70-b3da-4ee0-86e0-dd4b1e215ab8
 
-# Vídeo expositivo do Projeto em execução-Versão 3
+  <h1>Vídeo expositivo do Projeto em execução-Versão 3</h1>
+  
   https://github.com/user-attachments/assets/8da6320d-e1ad-4a9d-979b-f5cdda085c75
 
-# Vídeo expositivo do Projeto em execução-Versão 4
+  <h1>Vídeo expositivo do Projeto em execução-Versão 4</h1>
+  
   https://github.com/user-attachments/assets/c8fa8153-3f98-4aeb-b104-547df1f1d282
+</div>
