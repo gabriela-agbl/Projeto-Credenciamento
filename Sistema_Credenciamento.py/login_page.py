@@ -8,9 +8,10 @@ def login():
 
     email = input("\nDigite o seu E-mail: ")
     senha = input("\nDigite a sua senha: ")
+    credencial = input("\nDigite sua credencial: ")
     
-    sql = "SELECT id_usuario, nome, tipo_usuario FROM USUARIO WHERE email = %s AND senha = %s"
-    cursor.execute(sql, (email, senha))
+    sql = "SELECT id_usuario, nome, tipo_usuario FROM USUARIO WHERE email = %s AND senha = %s AND credencial = %s"
+    cursor.execute(sql, (email, senha, credencial))
     usuario = cursor.fetchone()
 
     if usuario:
