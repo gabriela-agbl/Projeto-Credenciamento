@@ -12,7 +12,7 @@ def validar_email(email):
     return re.match(r"[^@]+@[^@]+\.[^@]+",email)
 
 def gerar_credencial():
-   return ''.join(random.choices(string.ascii_uppercase + string.digits, q=8))
+   return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
 
 def validar_chave(chave_inserida):
     if not os.path.exists("chave.txt"):
