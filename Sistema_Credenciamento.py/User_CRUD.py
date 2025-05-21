@@ -1,5 +1,9 @@
 import conectar_banco
 import re
+import random
+import time
+import string
+import os
 
 def validar_nome(nome):
     return nome.isalpha()
@@ -7,10 +11,23 @@ def validar_nome(nome):
 def validar_email(email):
     return re.match(r"[^@]+@[^@]+\.[^@]+",email)
 
+def gerar_credencial():
+   return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+
+def validar_chave(chave_inserida):
+    if not os.path.exists("chave.txt"):
+        print("Erro: Arquivo de chave não encontrado. Inicie o gerador primeiro.")
+        return False 
+    
+    with open("chave.txt", "r") as arquivo:
+        chave_correta = arquivo.read().strip()
+        return chave_inserida.upper() == chave_correta
+
 def cadastrar():
     
     con = conectar_banco.conectar()
     cursor = con.cursor()
+    credencial = gerar_credencial()
 
     while True:
         nome = input("\nDigite o nome do usuário: ")
@@ -37,11 +54,34 @@ def cadastrar():
         else:
             break
 
+    tipo = ""
+
+    while tipo not in ["Organizador", "Participante"]:
+        tipo = input("\nTipo (Organizador/Participante): ").strip().capitalize()
+        if tipo not in ["Organizador", "Participante"]:
+            print("\nTipo Inválido! Digite Organizador ou Participante.")
+    
+    if tipo == "Organizador":
+        while True:
+            chave_usuario = input("\nDigite a chave temporária: ").strip()
+
+            if validar_chave(chave_usuario):
+                print("\nAcesso concedido! Bem vindo!")
+                print(f"Sua chave de acesso é: {credencial}")
+                break
+            else:
+                print("\nChave inválida. Tente novamente.")
+                time.sleep(1)
+
+    elif tipo == "Participante":
+        print("\nAcesso concedido! Bem vindo!")
+        print(f"Sua chave de acesso é: {credencial}")
+
     senha = input("\nDigite a senha do usuário: ")
     tipo_usuario = input("\nDigite o tipo de usuário(Organizador ou Participante): ")
 
-    sql = "INSERT INTO USUARIO (nome, email, senha, tipo_usuario) VALUES (%s, %s, %s, %s)"
-    valores = (nome, email, senha, tipo_usuario)
+    sql = "INSERT INTO USUARIO (nome, email, senha, tipo_usuario, credencial) VALUES (%s, %s, %s, %s, %s)"
+    valores = (nome, email, senha, tipo_usuario, credencial)
 
     cursor.execute(sql, valores)
     con.commit()
