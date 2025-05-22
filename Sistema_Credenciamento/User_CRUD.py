@@ -1,9 +1,10 @@
-import conectar_banco
+from Sistema_Credenciamento import conectar_banco
 import re
 import random
 import time
 import string
 import os
+from Sistema_Credenciamento.logger_utils import log_acesso
 
 def validar_nome(nome):
     return nome.isalpha()
@@ -34,6 +35,7 @@ def cadastrar():
     
         if not validar_nome(nome):
             print("Nome inválido!Use apenas letras(sem números ou símbolos).")
+            log_acesso("Sistema", "Validação de nome", "Nome inválido")
 
         else:
             break
@@ -43,6 +45,7 @@ def cadastrar():
 
         if not validar_email(email):
             print("Formato de email inválido. Ex: nome@exemplo.com")
+            log_acesso(email, "Validação de email", "Formato inválido")
 
             continue
 
@@ -50,6 +53,7 @@ def cadastrar():
 
         if cursor.fetchone():
             print("\nJá existe um usuário com esse E-mail. Tente outro!")
+            log_acesso(email, "Validação de email", "Email já existe")
         
         else:
             break
@@ -60,6 +64,7 @@ def cadastrar():
         tipo = input("\nTipo (Organizador/Participante): ").strip().capitalize()
         if tipo not in ["Organizador", "Participante"]:
             print("\nTipo Inválido! Digite Organizador ou Participante.")
+            log_acesso(email, "Validação de tipo", "Tipo inválido")
     
     if tipo == "Organizador":
         while True:
@@ -68,23 +73,26 @@ def cadastrar():
             if validar_chave(chave_usuario):
                 print("\nAcesso concedido! Bem vindo!")
                 print(f"Sua chave de acesso é: {credencial}")
+                log_acesso(email, "Validação de chave organizador", "Sucesso")
                 break
             else:
                 print("\nChave inválida. Tente novamente.")
+                log_acesso(email, "Validação de chave organizador", "Chave inválida")
                 time.sleep(1)
 
     elif tipo == "Participante":
         print("\nAcesso concedido! Bem vindo!")
         print(f"Sua chave de acesso é: {credencial}")
+        log_acesso(email, "Cadastro participante", "Sucesso")
 
     senha = input("\nDigite a senha do usuário: ")
-    tipo_usuario = input("\nDigite o tipo de usuário(Organizador ou Participante): ")
 
     sql = "INSERT INTO USUARIO (nome, email, senha, tipo_usuario, credencial) VALUES (%s, %s, %s, %s, %s)"
-    valores = (nome, email, senha, tipo_usuario, credencial)
+    valores = (nome, email, senha, tipo, credencial)
 
     cursor.execute(sql, valores)
     con.commit()
+    log_acesso(email, "Cadastro de Usuário", "Sucesso")
 
     print("\nUsuário Cadastrado com Sucesso!")
 
@@ -106,14 +114,17 @@ def atualizar_porId():
     if resultado is None:
         
         print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
+        log_acesso("Sistema", f"Atualização usuário ID {id_usuario}", "Usuário não encontrado")
 
     else:
+        email_atual = resultado[2]
 
         while True:
             novo_nome = input("\nDigite o novo nome: ") 
         
             if not validar_nome(novo_nome):
                 print("Nome inválido!Use apenas letras(sem números ou símbolos).")
+                log_acesso(email_atual, "Validação nome atualização", "Nome inválido")
 
             else:
                 break
@@ -123,6 +134,7 @@ def atualizar_porId():
         
             if not validar_email(novo_email):
                 print("Formato de email inválido. Ex: nome@exemplo.com")
+                log_acesso(email_atual, "Validação email atualização", "Formato inválido")
 
                 continue
 
@@ -133,6 +145,7 @@ def atualizar_porId():
 
             if cursor.fetchone():
                 print("\nJá existe um usuário com esse E-mail. Tente outro!")
+                log_acesso(email_atual, "Validação email atualização", "Email já existe")
         
             else:
                 break
@@ -145,6 +158,7 @@ def atualizar_porId():
 
         cursor.execute(sql, valores)
         con.commit()
+        log_acesso(novo_email, f"Atualização usuário ID {id_usuario}", "Sucesso")
 
         print("\nUsuário Atualizado com Sucesso!")
 
@@ -166,14 +180,17 @@ def deletar_porId():
     if resultado is None:
 
         print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
+        log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Usuário não encontrado")
 
     else:
+        email_usuario = resultado[2]
 
         sql = "DELETE FROM USUARIO WHERE id_usuario = %s"
         valores = (id_usuario,)
 
         cursor.execute(sql, valores)
         con.commit()
+        log_acesso(email_usuario, f"Exclusão usuário ID {id_usuario}", "Sucesso")
 
         print("\nUsuário Deletado com Sucesso!")
 
@@ -194,9 +211,11 @@ def listar():
 
         for usuario in USUARIO:
             print(usuario)
+        log_acesso("Sistema", "Listagem de usuários", "Sucesso")
 
     else:
         print("\nNenhum Usuário Encontrado")
+        log_acesso("Sistema", "Listagem de usuários", "Nenhum usuário encontrado")
 
     cursor.close()
     con.close()

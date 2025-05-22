@@ -1,6 +1,6 @@
 import re
-import conectar_banco
-import login_page
+from Sistema_Credenciamento import conectar_banco
+from Sistema_Credenciamento.logger_utils import log_acesso
 
 def menu_organizador(id_usuario):
     while True:
@@ -36,6 +36,9 @@ def criar_evento(id_organizador):
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
+    cursor.execute("SELECT email FROM USUARIO WHERE id_usuario = %s", (id_organizador,))
+    email_organizador = cursor.fetchone()[0]
+
     nome = input("\nDigite o nome do evento: ")
 
     while True:
@@ -43,12 +46,14 @@ def criar_evento(id_organizador):
         if validar_data(data_inicio):
             break
         print("Data inválida. Digite no formato correto (AAAA-MM-DD), apenas números e traços.")
+        log_acesso(email_organizador, "Criação de Evento", "Falha: Data inválida")
 
     while True:
         data_fim = input("Digite a data final do evento (formato AAAA-MM-DD): ")
         if validar_data(data_fim):
             break
         print("Data inválida. Digite no formato correto (AAAA-MM-DD), apenas números e traços.")
+        log_acesso(email_organizador, "Criação de Evento", "Falha: Data inválida")
 
     sql = """
         INSERT INTO EVENTO (
@@ -59,6 +64,7 @@ def criar_evento(id_organizador):
 
     cursor.execute(sql, valores)
     con.commit()
+    log_acesso(email_organizador, "Criação de Evento", "Sucesso")
 
     print("\nEvento criado com sucesso!")
 
@@ -69,11 +75,15 @@ def ver_participantes(id_organizador):
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
+    cursor.execute("SELECT email FROM USUARIO WHERE id_usuario = %s", (id_organizador,))
+    email_organizador = cursor.fetchone()[0]
+
     cursor.execute("SELECT id_evento, nome FROM EVENTO WHERE id_organizador = %s", (id_organizador,))
     eventos = cursor.fetchall()
 
     if not eventos:
         print("\nVocê ainda não criou nenhum evento.")
+        log_acesso(email_organizador, "Visualização de Participantes", "Falha: Nenhum evento criado")
         cursor.close()
         con.close()
         return
@@ -97,8 +107,10 @@ def ver_participantes(id_organizador):
         print("\n--- Participantes Inscritos ---")
         for p in participantes:
             print(f"Nome: {p[0]}, Email: {p[1]}")
+        log_acesso(email_organizador, "Visualização de Participantes", f"Sucesso: Evento {id_evento} com participantes")
     else:
         print("\nNenhum participante inscrito nesse evento.")
+        log_acesso(email_organizador, "Visualização de Participantes", f"Sucesso: Evento {id_evento} sem participantes")
 
     cursor.close()
     con.close()
@@ -107,11 +119,15 @@ def apagar_evento(id_organizador):
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
+    cursor.execute("SELECT email FROM USUARIO WHERE id_usuario = %s", (id_organizador,))
+    email_organizador = cursor.fetchone()[0]
+
     cursor.execute("SELECT id_evento, nome FROM EVENTO WHERE id_organizador = %s", (id_organizador,))
     eventos = cursor.fetchall()
 
     if not eventos:
         print("\nVocê não tem eventos para apagar.")
+        log_acesso(email_organizador, "Exclusão de Evento", "Falha: Nenhum evento encontrado")
         cursor.close()
         con.close()
         return
@@ -126,6 +142,7 @@ def apagar_evento(id_organizador):
     evento_ids = [str(e[0]) for e in eventos]
     if id_evento not in evento_ids:
         print("Evento não encontrado ou você não tem permissão para apagá-lo.")
+        log_acesso(email_organizador, "Exclusão de Evento", "Falha: Evento não encontrado")
         cursor.close()
         con.close()
         return
@@ -134,6 +151,7 @@ def apagar_evento(id_organizador):
     confirmacao = input("Tem certeza que deseja apagar este evento? Isso removerá também todas as inscrições. (s/n): ").lower()
     if confirmacao != "s":
         print("Operação cancelada.")
+        log_acesso(email_organizador, "Exclusão de Evento", "Cancelada")
         cursor.close()
         con.close()
         return
@@ -144,6 +162,8 @@ def apagar_evento(id_organizador):
     # Remove o evento
     cursor.execute("DELETE FROM EVENTO WHERE id_evento = %s AND id_organizador = %s", (id_evento, id_organizador))
     con.commit()
+
+    log_acesso(email_organizador, "Exclusão de Evento", "Sucesso")
 
     print("\nEvento apagado com sucesso.")
 

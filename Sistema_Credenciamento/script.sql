@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS EVENTO (
     nome VARCHAR(100),
     data_inicio DATE,
     data_fim DATE,
-    local VARCHAR(100),
     FOREIGN KEY (id_organizador) REFERENCES USUARIO(id_usuario)
 );
 

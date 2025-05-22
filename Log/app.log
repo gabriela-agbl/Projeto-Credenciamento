@@ -1,0 +1,20 @@
+21/05/2025 20:46:08 - INFO - Usuário: Sistema | Ação: Listagem de usuários | Status: Sucesso
+21/05/2025 20:46:52 - INFO - Usuário: Maria@gmail.com | Ação: Validação de chave organizador | Status: Sucesso
+21/05/2025 20:47:03 - INFO - Usuário: Maria@gmail.com | Ação: Cadastro de Usuário | Status: Sucesso
+21/05/2025 20:47:13 - INFO - Usuário: Sistema | Ação: Listagem de usuários | Status: Sucesso
+21/05/2025 20:48:21 - INFO - Usuário: Maria@gmail.com | Ação: Criação de Evento | Status: Sucesso
+21/05/2025 20:50:42 - INFO - Usuário: Sistema | Ação: Listagem de usuários | Status: Sucesso
+21/05/2025 20:51:02 - INFO - Usuário: Ana@gmail.com | Ação: Visualização de Eventos | Status: Sucesso
+21/05/2025 20:53:06 - INFO - Usuário: Ana@gmail.com | Ação: Visualização de Eventos | Status: Sucesso
+21/05/2025 20:53:11 - INFO - Usuário: Ana@gmail.com | Ação: Inscrição em Evento | Status: Sucesso: Evento 2
+21/05/2025 20:53:20 - INFO - Usuário: Sistema | Ação: Listagem de usuários | Status: Sucesso
+21/05/2025 20:53:44 - INFO - Usuário: Maria@gmail.com | Ação: Visualização de Participantes | Status: Sucesso: Evento 2 com participantes
+21/05/2025 20:53:53 - INFO - Usuário: Maria@gmail.com | Ação: Exclusão de Evento | Status: Sucesso
+21/05/2025 20:53:57 - INFO - Usuário: Maria@gmail.com | Ação: Visualização de Participantes | Status: Falha: Nenhum evento criado
+21/05/2025 20:54:18 - INFO - Usuário: Ana@gmail.com | Ação: Visualização de Eventos | Status: Nenhum evento encontrado
+21/05/2025 20:54:20 - INFO - Usuário: Ana@gmail.com | Ação: Visualização de Eventos | Status: Nenhum evento encontrado
+21/05/2025 20:54:21 - INFO - Usuário: Ana@gmail.com | Ação: Inscrição em Evento | Status: Falha: Evento não encontrado
+21/05/2025 20:54:58 - INFO - Usuário: Ana@gmail.com | Ação: Atualização usuário ID 3 | Status: Sucesso
+21/05/2025 20:55:01 - INFO - Usuário: Sistema | Ação: Listagem de usuários | Status: Sucesso
+21/05/2025 20:55:12 - INFO - Usuário: Maria@gmail.com | Ação: Exclusão usuário ID 5 | Status: Sucesso
+21/05/2025 20:55:14 - INFO - Usuário: Sistema | Ação: Listagem de usuários | Status: Sucesso

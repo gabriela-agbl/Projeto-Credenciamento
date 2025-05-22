@@ -1,6 +1,6 @@
-import conectar_banco
-import menu_organizador
-import menu_participante
+from Sistema_Credenciamento import conectar_banco
+from Sistema_Credenciamento import menu_organizador
+from Sistema_Credenciamento import menu_participante
 
 def login():
     con = conectar_banco.conectar()

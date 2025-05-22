@@ -1,5 +1,5 @@
-import User_CRUD
-import login_page
+from Sistema_Credenciamento import User_CRUD
+from Sistema_Credenciamento import login_page
 
 def menu():
     while True:
