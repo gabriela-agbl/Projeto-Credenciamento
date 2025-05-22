@@ -58,6 +58,8 @@ def cadastrar():
         else:
             break
 
+    senha = input("\nDigite a senha do usuário: ")
+
     tipo = ""
 
     while tipo not in ["Organizador", "Participante"]:
@@ -84,8 +86,6 @@ def cadastrar():
         print("\nAcesso concedido! Bem vindo!")
         print(f"Sua chave de acesso é: {credencial}")
         log_acesso(email, "Cadastro participante", "Sucesso")
-
-    senha = input("\nDigite a senha do usuário: ")
 
     sql = "INSERT INTO USUARIO (nome, email, senha, tipo_usuario, credencial) VALUES (%s, %s, %s, %s, %s)"
     valores = (nome, email, senha, tipo, credencial)
