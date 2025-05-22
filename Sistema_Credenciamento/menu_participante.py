@@ -42,7 +42,7 @@ def ver_eventos(id_usuario):
         log_acesso(email, "Visualização de Eventos", "Sucesso")
     else:
         print("\nNenhum evento cadastrado.")
-        log_acesso(email, "Visualização de Eventos", "Nenhum evento encontrado")
+        log_acesso(email, "Visualização de Eventos", "Falha: Nenhum evento encontrado")
 
     cursor.close()
     con.close()

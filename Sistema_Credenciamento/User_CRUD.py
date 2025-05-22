@@ -35,7 +35,7 @@ def cadastrar():
     
         if not validar_nome(nome):
             print("Nome inválido!Use apenas letras(sem números ou símbolos).")
-            log_acesso("Sistema", "Validação de nome", "Nome inválido")
+            log_acesso("Sistema", "Validação de nome", "Falha: Nome inválido")
 
         else:
             break
@@ -45,7 +45,7 @@ def cadastrar():
 
         if not validar_email(email):
             print("Formato de email inválido. Ex: nome@exemplo.com")
-            log_acesso(email, "Validação de email", "Formato inválido")
+            log_acesso(email, "Validação de email", "Falha: Formato inválido")
 
             continue
 
@@ -53,7 +53,7 @@ def cadastrar():
 
         if cursor.fetchone():
             print("\nJá existe um usuário com esse E-mail. Tente outro!")
-            log_acesso(email, "Validação de email", "Email já existe")
+            log_acesso(email, "Validação de email", "Falha: Email já existe")
         
         else:
             break
@@ -64,7 +64,7 @@ def cadastrar():
         tipo = input("\nTipo (Organizador/Participante): ").strip().capitalize()
         if tipo not in ["Organizador", "Participante"]:
             print("\nTipo Inválido! Digite Organizador ou Participante.")
-            log_acesso(email, "Validação de tipo", "Tipo inválido")
+            log_acesso(email, "Validação de tipo", "Falha: Tipo inválido")
     
     if tipo == "Organizador":
         while True:
@@ -77,7 +77,7 @@ def cadastrar():
                 break
             else:
                 print("\nChave inválida. Tente novamente.")
-                log_acesso(email, "Validação de chave organizador", "Chave inválida")
+                log_acesso(email, "Validação de chave organizador", "Falha: Chave inválida")
                 time.sleep(1)
 
     elif tipo == "Participante":
@@ -114,7 +114,7 @@ def atualizar_porId():
     if resultado is None:
         
         print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
-        log_acesso("Sistema", f"Atualização usuário ID {id_usuario}", "Usuário não encontrado")
+        log_acesso("Sistema", f"Atualização usuário ID {id_usuario}", "Falha: Usuário não encontrado")
 
     else:
         email_atual = resultado[2]
@@ -124,7 +124,7 @@ def atualizar_porId():
         
             if not validar_nome(novo_nome):
                 print("Nome inválido!Use apenas letras(sem números ou símbolos).")
-                log_acesso(email_atual, "Validação nome atualização", "Nome inválido")
+                log_acesso(email_atual, "Validação nome atualização", "Falha: Nome inválido")
 
             else:
                 break
@@ -134,7 +134,7 @@ def atualizar_porId():
         
             if not validar_email(novo_email):
                 print("Formato de email inválido. Ex: nome@exemplo.com")
-                log_acesso(email_atual, "Validação email atualização", "Formato inválido")
+                log_acesso(email_atual, "Validação email atualização", "Falha: Formato inválido")
 
                 continue
 
@@ -145,7 +145,7 @@ def atualizar_porId():
 
             if cursor.fetchone():
                 print("\nJá existe um usuário com esse E-mail. Tente outro!")
-                log_acesso(email_atual, "Validação email atualização", "Email já existe")
+                log_acesso(email_atual, "Validação email atualização", "Falha: Email já existe")
         
             else:
                 break
@@ -180,7 +180,7 @@ def deletar_porId():
     if resultado is None:
 
         print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
-        log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Usuário não encontrado")
+        log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário não encontrado")
 
     else:
         email_usuario = resultado[2]
@@ -215,7 +215,7 @@ def listar():
 
     else:
         print("\nNenhum Usuário Encontrado")
-        log_acesso("Sistema", "Listagem de usuários", "Nenhum usuário encontrado")
+        log_acesso("Sistema", "Listagem de usuários", "Falha: Nenhum usuário encontrado")
 
     cursor.close()
     con.close()
