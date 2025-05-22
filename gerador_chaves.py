@@ -12,8 +12,8 @@ try:
        chave=gerar_chave()
        with open("chave.txt", "w") as arquivo:
            arquivo.write(chave)
-       print(f"[GERADOR] Nova chave gerada: {chave} (válida por 10s)")
-       time.sleep(10)
+       print(f"[GERADOR] Nova chave gerada: {chave} (válida por 20s)")
+       time.sleep(20)
 
 
 except KeyboardInterrupt:
