@@ -1,6 +1,8 @@
 import re
 from Sistema_Credenciamento import conectar_banco
 from Sistema_Credenciamento.logger_utils import log_acesso
+from Sistema_Credenciamento.relatorio_usuarios import gerar_relatorio_usuarios
+
 
 def menu_organizador(id_usuario):
     while True:
@@ -8,7 +10,8 @@ def menu_organizador(id_usuario):
         print("1 - Criar evento")
         print("2 - Ver participantes dos eventos")
         print("3 - Apagar evento")
-        print("4 - Sair e voltar para o menu principal")
+        print("4 - Gerar Relatório de Usuários")
+        print("5 - Sair e voltar para o menu principal")
 
         opcao = input("\nEscolha uma opção: ")
 
@@ -22,6 +25,9 @@ def menu_organizador(id_usuario):
             apagar_evento(id_usuario)
 
         elif opcao == "4":
+            gerar_relatorio_usuarios()
+
+        elif opcao == "5":
             print("Voltando ao menu principal...")
             return
 
