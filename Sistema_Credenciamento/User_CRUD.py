@@ -154,12 +154,14 @@ def atualizar_porId():
 
                 continue
 
-            if novo_email == resultado[2]:
+            if novo_email == email_atual:
                 break
 
             cursor.execute("SELECT * FROM USUARIO WHERE email = %s", (novo_email,))
+            resultado_email = cursor.fetchone()
 
-            if cursor.fetchone():
+
+            if resultado_email and resultado_email[0] != id_usuario:
                 print("\nJá existe um usuário com esse E-mail. Tente outro!")
                 log_acesso(email_atual, "Validação email atualização", "Falha: Email já existe")
         
