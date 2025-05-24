@@ -7,10 +7,19 @@ import os
 from Sistema_Credenciamento.logger_utils import log_acesso
 
 def validar_nome(nome):
-    return nome.isalpha()
+    return all(c.isalpha() or c.isspace() for c in nome)
 
 def validar_email(email):
     return re.match(r"[^@]+@[^@]+\.[^@]+",email)
+
+def validar_senha_forte(senha):
+    criterios = [
+        len(senha) >= 8,
+        re.search(r"[A-Za-z]", senha) is not None,
+        re.search(r"\d", senha) is not None,
+        re.search(r"[!@#$%^&*()_+{}\[\]:;<>,.?/~]", senha) is not None
+    ]
+    return all(criterios)
 
 def gerar_credencial():
    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
@@ -25,7 +34,7 @@ def validar_chave(chave_inserida):
         return chave_inserida.upper() == chave_correta
 
 def cadastrar():
-    
+    print("\n--- CADASTRO DE USUÁRIO ---")
     con = conectar_banco.conectar()
     cursor = con.cursor()
     credencial = gerar_credencial()
@@ -58,7 +67,14 @@ def cadastrar():
         else:
             break
 
-    senha = input("\nDigite a senha do usuário: ")
+    while True:
+        senha = input("\nDigite a Senha (mínimo 8 caracteres, letras, números e símbolos): ").strip()
+
+        if not validar_senha_forte(senha):
+            print("\nA senha não atende aos critérios! Tente novamente.")
+            log_acesso(email, "Validação de senha", "Falha - Senha fraca")
+        else:
+            break
 
     tipo = ""
 
@@ -100,7 +116,7 @@ def cadastrar():
     con.close()
 
 def atualizar_porId():
-    
+    print("\n--- ATUALIZAÇÃO DE USUÁRIO ---")
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
@@ -150,8 +166,8 @@ def atualizar_porId():
             else:
                 break
         
-        nova_senha = input("\nDigite a nova senha: ")
-        novo_tipo = input("\nDigite o novo tipo do usuário(Organizador ou Participante): ")
+        nova_senha = input("\nDigite a nova senha: ").strip()
+        novo_tipo = input("\nDigite o novo tipo do usuário(Organizador ou Participante): ").strip().capitalize()
 
         sql = "UPDATE USUARIO SET nome = %s, email = %s, senha = %s, tipo_usuario = %s WHERE id_usuario = %s"
         valores = (novo_nome, novo_email, nova_senha, novo_tipo, id_usuario)
@@ -166,7 +182,7 @@ def atualizar_porId():
         con.close()
 
 def deletar_porId():
-
+    print("\n--- DELETAR USUÁRIO ---")
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
@@ -199,7 +215,7 @@ def listar():
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
-    sql = "SELECT * FROM USUARIO"
+    sql = "SELECT id_usuario, nome, email, tipo FROM USUARIO"
         
     cursor.execute(sql)
         
