@@ -27,8 +27,8 @@ def login():
     
             sql = "SELECT id_usuario, nome, tipo_usuario FROM USUARIO WHERE email = %s AND senha = %s AND credencial = %s"
             
-                cursor.execute(sql, (email, senha, credencial))
-                usuario = cursor.fetchone()
+            cursor.execute(sql, (email, senha, credencial))
+            usuario = cursor.fetchone()
 
             if usuario:
                 id_usuario, nome,   tipo_usuario =   usuario
