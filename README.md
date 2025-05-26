@@ -31,9 +31,9 @@
     Gerenciar eventos ✅<br>  
     Login de usuário ✅<br>  
     Definir permissões de acesso ✅<br>  
-    Criar credenciais 👨🏻‍💻<br>  
-    Registrar logs de acesso 👨🏻‍💻<br>  
-    Emitir relatórios 👨🏻‍💻<br>  
+    Criar credenciais ✅<<br>  
+    Registrar logs de acesso ✅<<br>  
+    Emitir relatórios ✅<<br>  
     Inscrever usuários em eventos ✅<br>  
     Validar dados ✅<br>  
     Conectar sistema (Python) ao banco de dados ✅<br>
