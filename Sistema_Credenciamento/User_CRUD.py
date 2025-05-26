@@ -238,7 +238,7 @@ def listar():
     con = conectar_banco.conectar()
     cursor = con.cursor()
 
-    sql = "SELECT id_usuario, nome, email, tipo FROM USUARIO"
+    sql = "SELECT id_usuario, nome, email, tipo_usuario FROM USUARIO"
         
     cursor.execute(sql)
         
