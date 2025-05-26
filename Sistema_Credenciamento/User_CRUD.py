@@ -199,6 +199,28 @@ def deletar_porId():
         print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
         log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário não encontrado")
 
+    select2 = "SELECT * FROM INSCRICAO WHERE id_usuario = %s"
+
+    cursor.execute(select2, (id_usuario,))
+    inscricao_existente = cursor.fetchone()
+
+    if inscricao_existente:
+
+        print("\nNão foi possível deletar! Usuário inscrito em evento!")
+        log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário inscrito em evento")
+
+    id_organizador = id_usuario
+
+    select3 = "SELECT * FROM EVENTO WHERE id_organizador = %s"
+
+    cursor.execute(select3, (id_organizador,))
+    evento_existente = cursor.fetchone()
+
+    if evento_existente:
+
+        print("\nNão foi possível deletar! Usuário possui um evento!")
+        log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário possui evento")
+
     else:
         email_usuario = resultado[2]
 
