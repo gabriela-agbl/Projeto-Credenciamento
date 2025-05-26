@@ -198,6 +198,7 @@ def deletar_porId():
 
         print("\nNenhum usuário encontrado com esse ID. Tente novamente.")
         log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário não encontrado")
+        return
 
     select2 = "SELECT * FROM INSCRICAO WHERE id_usuario = %s"
 
@@ -208,6 +209,7 @@ def deletar_porId():
 
         print("\nNão foi possível deletar! Usuário inscrito em evento!")
         log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário inscrito em evento")
+        return
 
     id_organizador = id_usuario
 
@@ -220,18 +222,19 @@ def deletar_porId():
 
         print("\nNão foi possível deletar! Usuário possui um evento!")
         log_acesso("Sistema", f"Exclusão usuário ID {id_usuario}", "Falha: Usuário possui evento")
+        return
 
-    else:
-        email_usuario = resultado[2]
+    
+    email_usuario = resultado[2]
 
-        sql = "DELETE FROM USUARIO WHERE id_usuario = %s"
-        valores = (id_usuario,)
+    sql = "DELETE FROM USUARIO WHERE id_usuario = %s"
+    valores = (id_usuario,)
 
-        cursor.execute(sql, valores)
-        con.commit()
-        log_acesso(email_usuario, f"Exclusão usuário ID {id_usuario}", "Sucesso")
+    cursor.execute(sql, valores)
+    con.commit()
+    log_acesso(email_usuario, f"Exclusão usuário ID {id_usuario}", "Sucesso")
 
-        print("\nUsuário Deletado com Sucesso!")
+    print("\nUsuário Deletado com Sucesso!")
 
 def listar():
 
