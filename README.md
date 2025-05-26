@@ -17,7 +17,7 @@
 
 <div align="center">
   <h2>Andamento 🟡</h2>
-  Ainda em desenvolvimento...
+  Ainda em desenvolvimento...<br>
   Funcionalidades futuras serão adicionadas
 </div>
 
