@@ -42,7 +42,7 @@
 </div>
 
 <div align="center"> 
-  <h2>Tecnologias utilizadas</h2>
+  <h2>Tecnologias utilizadas e Ferramentas de apoio</h2>
   <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" width="40"/>
   &emsp;&emsp;
   <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL" width="60"/>
