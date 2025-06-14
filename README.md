@@ -16,7 +16,7 @@
 </div>
 
 <div align="center">
-  <h2>Entregue</h2>
+  <h2>Entregue 🟢</h2>
   Projeto avaliado pelos professores...<br>
   Funcionalidades futuras serão adicionadas
 </div>
