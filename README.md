@@ -82,7 +82,7 @@
 
 <div align="center">
   <h1>💼 Contribuidores e Membros</h1>
-  <a href="https://github.com/Agbl09/Projeto-Credenciamento/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=Agbl09/Projeto-Credenciamento"/>
+  <a href="https://github.com/gabriela-agbl/Projeto-Credenciamento/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=gabriela-agbl/Projeto-Credenciamento"/>
   </a>
 </div>
